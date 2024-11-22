@@ -14,10 +14,17 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('last_name')->nullable();
+            $table->enum('turn',['morning', 'evening','night'])->nullable();
+            $table->enum('action',['rest', 'patrolling','in stand', 'out of service'])->default('out of service')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade');
+            $table->foreignId('stand_id')->constrained('stands', 'id')->onDelete('cascade')->nullable()->default(10);
             $table->timestamps();
         });
 
