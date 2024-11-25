@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Cluster::factory(5)->create();
-        //User::factory(10)->create();
-        //Stand::factory(20)->create();
-        //VeicleEntrance::factory(10);
-        //House::factory(100)->create();
-        //Amenity::factory(20)->create();
+        Stand::factory(20)->create();
+        User::factory(10)->create();
+        VeicleEntrance::factory(10);
+        House::factory(100)->create();
+        Amenity::factory(20)->create();
         
         
     }

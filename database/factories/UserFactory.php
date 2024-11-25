@@ -37,6 +37,7 @@ class UserFactory extends Factory
             'profile_photo_path' => null,
             'current_team_id' => null,
             'cluster_id' => $this->faker->numberBetween($min = 1, $max = 5),
+            'stand_id' => null,
             
 
         ];

@@ -1,3 +1,97 @@
+@php
+    $nav_links = [
+        [
+        'name' => 'Cluster',
+        'route' => route('dashboard'),
+        'active' => request()->routeIs('dashboard'),
+        'actived' => request()->routeIS('dasboard.*'),
+        ],
+
+        [
+        'name' => 'Caseta',
+        'route' => route('stand'),
+        'active' => request()->routeIs('stand'),
+        'actived' => request()->routeIS('stand.*'),
+        ],
+
+        [
+        'name' => 'Guardias',
+        'route' => route('user'),
+        'active' => request()->routeIs('user'),
+        'actived' => request()->routeIS('user.*'),
+        ],
+
+        [
+        'name' => 'Amenidades',
+        'route' => route('amenitie'),
+        'active' => request()->routeIs('amenitie'),
+        'actived' => request()->routeIS('amenitie.*'),
+        ],
+
+        [
+        'name' => 'Casas',
+        'route' => route('house'),
+        'active' => request()->routeIs('house'),
+        'actived' => request()->routeIS('house.*'),
+        ],
+
+        [
+        'name' => 'Entradas',
+        'route' => route('veicle_entrance'),
+        'active' => request()->routeIs('veicle_entrance'),
+        'actived' => request()->routeIS('veicle_entrance.*'),
+        ],
+
+
+];
+
+    $dropdown_links = 
+    [
+        [
+        'name' => 'Cluster',
+        'route' => route('dashboard'),
+        'active' => request()->routeIs('dashboard'),
+        'actived' => request()->routeIS('dasboard.*'),
+        ],
+
+        [
+        'name' => 'Caseta',
+        'route' => route('stand'),
+        'active' => request()->routeIs('stand'),
+        'actived' => request()->routeIS('stand.*'),
+        ],
+
+        [
+        'name' => 'Guardias',
+        'route' => route('user'),
+        'active' => request()->routeIs('user'),
+        'actived' => request()->routeIS('user.*'),
+        ],
+
+        [
+        'name' => 'Amenidades',
+        'route' => route('amenitie'),
+        'active' => request()->routeIs('amenitie'),
+        'actived' => request()->routeIS('amenitie.*'),
+        ],
+
+        [
+        'name' => 'Casas',
+        'route' => route('house'),
+        'active' => request()->routeIs('house'),
+        'actived' => request()->routeIS('house.*'),
+        ],
+
+        [
+        'name' => 'Entradas',
+        'route' => route('veicle_entrance'),
+        'active' => request()->routeIs('veicle_entrance'),
+        'actived' => request()->routeIS('veicle_entrance.*'),
+        ],
+
+];
+@endphp
+
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,9 +106,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    @foreach ($dropdown_links as $nav_link)
+                        <x-dropdown-link href="{{ $nav_link['route'] }}" :active="$nav_link['actived']">
+                            {{ $nav_link['name'] }}
+                        </x-dropdown-link>
+                    @endforeach
                 </div>
             </div>
 

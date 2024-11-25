@@ -23,6 +23,7 @@ return new class extends Migration
             $table->timestamp('check_out_time');
             //Crea una tabla para almacenar la hora de salida del veículo de tipo timestamp
             $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade');
+            $table->foreignId('stand_id')->constrained('stands', 'id')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade')->nullable();
 
             $table->timestamps();

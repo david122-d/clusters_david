@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
@@ -41,13 +42,18 @@ class RegistrationTest extends TestCase
 
         $response = $this->post('/register', [
             'name' => 'Test User',
+            'last_name' => 'User Last Name',
+            'turn' => 'morning',
+            'action' => 'patrolling',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
+            'cluster_id' => 1,
+            'stand_id' => 1,
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('dashboard'));
     }
 }

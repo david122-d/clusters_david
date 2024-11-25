@@ -23,8 +23,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade');
-            $table->foreignId('stand_id')->constrained('stands', 'id')->onDelete('cascade')->nullable()->default(10);
+            $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade')->nullable()->default(1);
+            $table->foreignId('stand_id')->nullable()->constrained('stands', 'id')->onDelete('cascade')->default(1);
             $table->timestamps();
         });
 
