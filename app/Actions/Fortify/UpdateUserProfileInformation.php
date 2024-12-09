@@ -50,6 +50,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         }
     }
 
+    // public $stands;
+
+    // public function mount(){
+    //     $this->stands = Stand::all();
+    // }
+
     /**
      * Update the given verified user's profile information.
      *

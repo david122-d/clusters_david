@@ -1,7 +1,7 @@
 @php
     $nav_links = [
         [
-        'name' => 'Cluster',
+        'name' => 'Condominio',
         'route' => route('dashboard'),
         'active' => request()->routeIs('dashboard'),
         'actived' => request()->routeIS('dasboard.*'),
@@ -37,9 +37,9 @@
 
         [
         'name' => 'Entradas',
-        'route' => route('veicle_entrance'),
-        'active' => request()->routeIs('veicle_entrance'),
-        'actived' => request()->routeIS('veicle_entrance.*'),
+        'route' => route('vehicle_entrance'),
+        'active' => request()->routeIs('vehicle_entrance'),
+        'actived' => request()->routeIS('vehicle_entrance.*'),
         ],
 
 
@@ -48,7 +48,7 @@
     $dropdown_links = 
     [
         [
-        'name' => 'Cluster',
+        'name' => 'Condominio',
         'route' => route('dashboard'),
         'active' => request()->routeIs('dashboard'),
         'actived' => request()->routeIS('dasboard.*'),
@@ -84,9 +84,9 @@
 
         [
         'name' => 'Entradas',
-        'route' => route('veicle_entrance'),
-        'active' => request()->routeIs('veicle_entrance'),
-        'actived' => request()->routeIS('veicle_entrance.*'),
+        'route' => route('vehicle_entrance'),
+        'active' => request()->routeIs('vehicle_entrance'),
+        'actived' => request()->routeIS('vehicle_entrance.*'),
         ],
 
 ];

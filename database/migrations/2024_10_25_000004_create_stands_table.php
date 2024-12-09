@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('stands', function (Blueprint $table) {
             $table->id();
             //Crea un ID el cual será nuestra llave primaria para cada una de las casetas de vigilancia
-            $table->integer('number');
+            $table->integer('number')->nullable();
             //Una columna para almacenar el numero de la cadeta de tipo entero
             $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade');
             

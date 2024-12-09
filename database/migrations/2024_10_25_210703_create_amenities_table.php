@@ -18,7 +18,7 @@ return new class extends Migration
             //Crea una columna para almacenar el nombre de la amenidad de tipo string
             $table->string('type');
             //Crea una columna para almacenar el tipo de la amenidad de tipo string
-            $table->enum('status',['active', 'disable','maintenance'])->default('disable');
+            $table->enum('status',['activa', 'inactiva','En mantenimiento'])->default('inactiva');
             //Crea una columna para almacenar el estatus de la amenidad de tipo enum para que solo puedan haber ciertos valores de tipo string
             $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade');
             $table->timestamps();

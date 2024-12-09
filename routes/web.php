@@ -40,8 +40,8 @@ Route::get('/house', function () {
     return view('house');
 })->name('house');
 
-Route::get('/veicle-entrance', function () {
-    return view('veicle_entrance');
-})->name('veicle_entrance');
+Route::get('/vehicle-entrance', function () {
+    return view('vehicle_entrance');
+})->name('vehicle_entrance');
 
 

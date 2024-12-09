@@ -17,14 +17,17 @@ return new class extends Migration
             $table->string('plates');
             //Crea una columna para almacenar las placas del veiculo de tipo string
             $table->string('reason');
-            //Crea una tabla para almacenar la razon de la visita de tipo string
+            //Crea una columna para almacenar la razon de la visita de tipo string
             $table->timestamp('check_in_time');
-            //Crea una tabla para almacenar la hora de entrada del veículo de tipo timestamp
-            $table->timestamp('check_out_time');
-            //Crea una tabla para almacenar la hora de salida del veículo de tipo timestamp
+            //Crea una columna para almacenar la hora de entrada del veículo de tipo timestamp
+            $table->timestamp('check_out_time')->nullable();
+            //Crea una columna para almacenar la hora de salida del veículo de tipo timestamp
             $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade');
+            //Crea una columna para almacenar una llave foranea la la cual almacenara un cluster_id
             $table->foreignId('stand_id')->constrained('stands', 'id')->onDelete('cascade');
+            //Crea una columna para almacenar una llave foranea la la cual almacenara un stand_id
             $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade')->nullable();
+            //Crea una columna para almacenar una llave foranea la la cual almacenara un user_id
 
             $table->timestamps();
         });

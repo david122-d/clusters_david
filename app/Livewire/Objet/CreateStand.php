@@ -12,8 +12,9 @@ class CreateStand extends Component
     public $cluster_id = '';
     
     public $isEditable;
-    public $stands;
     public $clusters;
+    //public $stands;
+    public $buscar='';
 
     public $standEdit = [
         'id' => '',
@@ -35,8 +36,16 @@ class CreateStand extends Component
     //Esta funcion Devuelve la vista de create stand
     public function render()
     {
-        $this->stands = Stand::all();
-        return view('livewire.objet.create-stand');
+        if($this->buscar == ''){
+            $stands = Stand::paginate(10);
+
+        }else{
+            $stands = Stand::where('number','like', '%' . $this->buscar . '%')//Encuentra y almacena en la variable stands los stands que tienen en alguna parte de su nombre el valor de la variable buscar
+            ->orderBy('id', 'desc')//Los ordena en orden decendente por id
+            ->paginate(10);//Cada pagina contiene 5 objetos
+        }
+        return view('livewire.objet.create-stand', compact('stands'));//Devuelve la vista create-cluster, con los clusters almacenados en la variable clusters
+    
     }
 
     //La funcion enviar debuelve los datos de un stand
@@ -50,22 +59,25 @@ class CreateStand extends Component
     }
 
     public function update($standID){
-        $this->sEdit = true;
+        $this->sEdit = true;//Se activa la edicion u muestra el cuadro de edicion
 
-        $standEditable = Stand::find($standID);
-        $this->idEditable = $standEditable->id;
+        $standEditable = Stand::find($standID);//encuentra el id de el vehiculo a editar y lo guarda en el id del objeto standEditable
+        $this->idEditable = $standEditable->id; //Le da el valor del ID de standEditable a idEditable
+        //Toma los valores de cada atrobuto de el objeto a editar y lo asigna al mismo atributo del objeto standEdit
         $this->standEdit['number'] = $standEditable->number;
         $this->standEdit['cluster_id'] = $standEditable->cluster_id;
     }
 
     public function editar(){
-        $stand = Stand::find($this->idEditable);
+        $stand = Stand::find($this->idEditable);//Buscamos el objeto que contenga idEditable obtenido en la funcion update
 
+        //Le actualizamos el valor de cada atributo por el nuevo almacenado en standEdit
         $stand->update([
         'number' => $this->standEdit['number'],
         'cluster_id' => $this->standEdit['cluster_id']
         ]);
 
+        //Reseteamos estas variables para evitar problemas en futuras ejecuciones
         $this->reset([
             'standEdit',
             'idEditable',
@@ -73,7 +85,7 @@ class CreateStand extends Component
         ]);
     }
 
-    //
+    //Sirve para inicializar el mandado de informacion, en donde crea un nuevo stand paraa almacenarlo, 
     public function agregar(){
         $this->sAdd = true; 
         $stand = new Stand();

@@ -1,7 +1,8 @@
 <div>
 
-
     <x-button class="blue-600 m-4" wire:click='agregar()'>Crear nueva caseta</x-button>
+
+    <input wire:model.live='buscar' type="text" class="form-control" placeholder="Buscar por numero...">
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -12,7 +13,7 @@
                         Numero de caseta
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Id del Cluster
+                        Condominio
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Acciones
@@ -38,18 +39,21 @@
                 </tr>
             @endforeach
         </table>
+        <div class="d-flex justify-content-center">
+            {{ $stands->links() }}
+        </div>
     </div>
 
     
     @if($sEdit)
-        <div class="bg-gray-800 bg-opacity-25 fixed inset-0">
-            <div class="mb-12">
+        <div class="bg-gray-800 bg-opacity-25 fixed inset-0 flex items-center justify-center">
+            <div class="bg-white shadow rounded-lg p-6 w-110">
                 <div class="bg-white shadow rounded-lg p-6">
                     <form class="max-w-lg mx-auto" wire:submit='editar'>
-                        <div class="mb-4"><span>Editar Sucursal:</span></div>
+                        <div class="mb-4"><span>Editar caseta:</span></div>
                         <div>
-                        <x-label class="w-full" for="number" value="Nombre del stand"/>
-                        <x-input class="w-full" name="number" wire:model='standEdit.number'/><br>
+                        <x-label class="w-full" for="number" value="Numero de la caseta"/>
+                        <x-input class="w-full" type="number" name="number" wire:model='standEdit.number'/><br>
                         </div>
 
                         <div>
@@ -74,23 +78,34 @@
     @endif
 
     @if($sAdd)
-        <div class="bg-gray-800 bg-opacity-25 fixed inset-0">
-            <div class="mb-12">
+        <div class="bg-gray-800 bg-opacity-25 fixed inset-0 flex items-center justify-center">
+            <div class="bg-white shadow rounded-lg p-6 w-110">
                 <div class="bg-white shadow rounded-lg p-6">
                     <form class="max-w-lg mx-auto" wire:submit='enviar'>
-                        <div class="mb-4"><span>Crear nuevo stand</span></div>
+                        <div class="mb-4"><span>Crear nueva caseta</span></div>
                         <div class="mb-4 ml-4">
                             <div>
-                                <x-label class="w-full" value="Nombre del stand"/>
-                                <x-input class="w-full" wire:model='number' required/><br>
+                                <x-label class="w-full" for="number" value='Numero de caseta'/>
+                                <x-input class="w-full" type="number" for="number" wire:model='number' class="w-full"/><br>
                             </div>
+
+                            <div>
+                                <x-label class="w-full" for="cluster_id" value="Condominio"/>
+                                <select wire:model='cluster_id' class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" fill="none" viewBox="0 0 10 6">
+                                    <option value="" disabled>Seleccione un condominio</option>
+                                    @foreach($clusters as $cluster)
+                                        <option wire:key='{{ $cluster->id }}' value="{{$cluster->id}}">{{$cluster->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            
                                 
                                 <br>
         
                             <div class="flex items-center space-x-4">
-                                <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" wire:click="set('cAdd', false)">Cancelar</button>
+                                <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" wire:click="set('sAdd', false)">Cancelar</button>
                                 <br>
-                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" wire:click="set('cAdd', false)">Agregar</button>
+                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" wire:click="set('sAdd', false)">Agregar</button>
                                 
                             </div>
                         </div>

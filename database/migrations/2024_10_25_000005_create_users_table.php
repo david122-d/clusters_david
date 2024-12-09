@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name')->nullable();
-            $table->enum('turn',['morning', 'evening','night'])->nullable();
+            $table->enum('turn',['morning', 'evening', 'night'])->nullable();
             $table->enum('action',['rest', 'patrolling','in stand', 'out of service'])->default('out of service')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade')->nullable()->default(1);
-            $table->foreignId('stand_id')->nullable()->constrained('stands', 'id')->onDelete('cascade')->default(1);
+            $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade')->nullable()->default(null);
+            $table->foreignId('stand_id')->nullable()->constrained('stands', 'id')->onDelete('cascade')->default(null);
             $table->timestamps();
         });
 

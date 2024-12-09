@@ -19,7 +19,7 @@ return new class extends Migration
             //Crea una columna en la tabla para almacenar el numero de la casa de tipo entero
             $table->string('owner_name');
             //Crea una columna para almacenar el nombre del propietario de la casa de tipo string
-            $table->enum('maintenance',['paied', 'unpaid'])->default('unpaid');            
+            $table->enum('maintenance',['pagado', 'no pagado'])->default('no pagado');            
             //Crea una columna para almacenar el estatus del pagode mantenimineto de la casa de tipo enum para que solo puedan haber ciertos valores de tipo string
             $table->foreignId('cluster_id')->constrained('clusters', 'id')->onDelete('cascade');
             $table->timestamps();

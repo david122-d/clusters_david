@@ -24,4 +24,8 @@ class Stand extends Model
     }
     //Declarar relacion uno a muchos con los guardias
 
+    public function vehicleEntrances (){
+        return $this->hasMany(vehicleEntrance:: class);
+    }
+
 }

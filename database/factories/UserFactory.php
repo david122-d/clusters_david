@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Team;
+use App\Models\Cluster;
+use App\Models\Stand;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -26,8 +28,18 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
+        // Selecciona un cluster_id aleatorio de entre 1 y 5
+        $clusterId = $this->faker->numberBetween(1, 5);
+
+        // Obtén los stand_id que pertenecen al cluster_id seleccionado
+        $standIds = Stand::where('cluster_id', $clusterId)->pluck('id')->toArray();
+
         return [
             'name' => fake()->name(),
+            'last_name' => fake()->lastName(),
+            'turn' => fake()->randomElement(['morning', 'evening', 'night']),
+            'action' => fake()-> randomElement(['rest', 'patrolling','in stand', 'out of service']),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -36,8 +48,8 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
-            'cluster_id' => $this->faker->numberBetween($min = 1, $max = 5),
-            'stand_id' => null,
+            'cluster_id' => $clusterId,
+            'stand_id' => $this->faker->randomElement($standIds),
             
 
         ];

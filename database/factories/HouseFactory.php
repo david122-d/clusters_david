@@ -19,7 +19,7 @@ class HouseFactory extends Factory
         return [
             'number'=> $this->faker->numberBetween($min = 10, $max = 250),
             'owner_name'=> $this->faker->firstName(),
-            'maintenance'=> $this->faker->randomElement(['paied', 'unpaid']),
+            'maintenance'=> $this->faker->randomElement(['pagado', 'no pagado']),
             'cluster_id' => $this->faker->numberBetween($min = 1, $max = 5),
 
         ];

@@ -78,7 +78,7 @@ class User extends Authenticatable
     }
 
     public function veicle_entrance (){
-        return $this->hasMany(VeicleEntrance::class);
+        return $this->hasMany(VehicleEntrance::class);
     }
     //Relacion uno a muchos con las entradas de veiculo
 }

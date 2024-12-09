@@ -10,21 +10,21 @@
             @csrf
 
             <div>
-                <x-label for="name" value="{{ __('Name') }}" />
+                <x-label for="name" value="{{ __('Nombre') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
-                <x-label for="last_name" value="{{ __('Last Name') }}" />
+                <x-label for="last_name" value="{{ __('Apellido') }}" />
                 <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autocomplete="last_name" />
             </div>
 
             <div class="mt-4">
-                <x-label for="turn" value="{{ __('Turn') }}" />
-                <select id="turn" name="turn" class="block mt-1 w-full" required>
-                    <option value="morning">{{ __('Morning') }}</option>
-                    <option value="evening">{{ __('Evening') }}</option>
-                    <option value="night">{{ __('Night') }}</option>
+                <x-label for="turn" class="w-full" value="{{ __('Turn') }}"/>
+                <select id="turn" name="turn" class="w-full inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" fill="none" viewBox="0 0 10 6" required >
+                    <option value="morning">{{ __('Matutino') }}</option>
+                    <option value="evening">{{ __('Vespertino') }}</option>
+                    <option value="night">{{ __('Nocturno') }}</option>
                 </select>
             </div>
 
@@ -72,11 +72,11 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+                    {{ __('Ya te registraste?') }}
                 </a>
 
                 <x-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrarse') }}
                 </x-button>
             </div>
         </form>
