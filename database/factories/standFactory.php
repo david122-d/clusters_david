@@ -17,7 +17,7 @@ class standFactory extends Factory
     public function definition(): array
     {
         return [
-            'number'=> $this->faker->numberBetween($min = 1, $max = 20),
+            'number'=> $this->faker->unique()->numberBetween($min = 1, $max = 20),
             'cluster_id' => $this->faker->numberBetween($min = 1, $max = 2),
 
         ];
