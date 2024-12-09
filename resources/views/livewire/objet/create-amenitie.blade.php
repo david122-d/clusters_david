@@ -168,8 +168,8 @@
                                     <x-label for="status" value="Estado"  class="w-full"/>
                                       <select wire:model='status' class="w-full inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" fill="none" viewBox="0 0 10 6">
                                         <option value="" disabled>Seleccione un estado</option>
-                                        <option value="active">Disponible</option>
-                                        <option value="disable">No disponible</option>
+                                        <option value="activa">Disponible</option>
+                                        <option value="inactiva">No disponible</option>
                                         <option value="En mantenimiento">En mantenimiento</option>
                                       </select>
                                       <br>                    
